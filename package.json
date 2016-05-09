@@ -17,7 +17,8 @@
     "client"
   ],
   "author": "Peter Kuma",
-  "license": "MIT",
+  "private": true,
+  "license": "UNLICENSED",
   "dependencies": {
     "bunyan": "^1.8.1",
     "bunyan-prettystream": "^0.1.3",
