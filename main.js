@@ -6,10 +6,12 @@ const PrettyStream = require('bunyan-prettystream');
 const argv = require('minimist')(process.argv.slice(2));
 const fs = require('fs');
 
-const client = require('./client.js');
+const connect = require('./client.js');
 
 
 const defaultConfig = {
+  retry: true,
+  retryInterval: 10000
 };
 
 const configFile = argv._[0] ||
@@ -57,4 +59,12 @@ process.on('uncaughtException', err => {
   log.error(err, 'Uncought exception: ' + err.message);
 });
 
-client(config);
+(function retry() {
+  let last = new Date();
+  let client = connect(config);
+  if (config.retry) {
+    client.on('close', () => {
+      setTimeout(retry, config.retryInterval - (new Date() - last));
+    });
+  }
+})();
