@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 'use strict'
 
 const _ = require('lodash');
@@ -5,9 +7,9 @@ const bunyan = require('bunyan');
 const PrettyStream = require('bunyan-prettystream');
 const argv = require('minimist')(process.argv.slice(2));
 const fs = require('fs');
+const through = require('through2');
 
 const connect = require('./client.js');
-
 
 const defaultConfig = {
   retry: true,
@@ -50,6 +52,25 @@ if (config.log) {
           require('path').dirname(configFile),
           config.log
         )
+      },
+      {
+        level: 'info',
+        type: 'raw',
+        stream: through.obj(rec => {
+          if (process.send) {
+            process.send({
+              name: ({
+                60: 'fatal',
+                50: 'error',
+                40: 'warn',
+                30: 'info',
+                20: 'debug',
+                10: 'trace'
+              }[rec.level]),
+              data: rec.err || rec.msg
+            });
+          }
+        })
       }
     ]
   });
