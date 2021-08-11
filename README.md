@@ -9,6 +9,8 @@ wstcp supports local and remote port forwarding, similar to OpenSSH.
 
 Also see [wstcp-server](https://github.com/peterkuma/wstcp-server).
 
+![Diagram](https://raw.githubusercontent.com/peterkuma/wstcp/master/diagram.png)
+
 Install
 -------
 
