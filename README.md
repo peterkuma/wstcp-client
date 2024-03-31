@@ -72,6 +72,7 @@ Options:
 - `name`: Client name.
 - `key`: Client authentication key.
 - `port`: TCP forwarding port (required).
+- `hostname`: TCP forwarding hostname (required).
 - `remote`: Remote TCP forwarding (default: `false`).
 - `retry`: Retry failed connections (default: `true`).
 - `retryInterval`: Retry interval in ms (default: 10000).

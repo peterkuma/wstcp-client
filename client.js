@@ -7,6 +7,7 @@ module.exports = function(config) {
   let client = wstcpClient({
     url: _.trimEnd(config.server, '/') + '/' + config.name,
     tcpPort: config.port,
+    tcpHostname: config.hostname,
     headers: {
       'X-Key': config.key
     },
