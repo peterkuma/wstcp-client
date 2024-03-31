@@ -82,6 +82,19 @@ TCP connections and forwards them to wstcp-server. Local forwarding
 (`remote: false`) means incoming TCP connections are forwarded from wstcp-server
 to wstcp-client.
 
+Changelog
+---------
+
+### 1.0.1 (2024-03-31)
+
+- Add hostname option.
+- Require new version of wstcp.
+- Improve documentation.
+
+### 1.0.0 (2019-11-05)
+
+- Initial release.
+
 License
 -------
 
